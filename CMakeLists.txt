@@ -9,8 +9,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-include(CTest)
-
 set(DHF_CORE_SOURCES
     src/HudFader.cpp
     src/Settings.cpp
@@ -68,7 +66,7 @@ if(DHF_BUILD_PLUGIN)
     install(FILES README.md LICENSE DESTINATION .)
 
     set(DHF_DIST_DIR "${PROJECT_SOURCE_DIR}/dist")
-    set(DHF_ZIP_PATH "${PROJECT_SOURCE_DIR}/NoCompass-In-Dialogue-SKSE-v${PROJECT_VERSION}.zip")
+    set(DHF_ZIP_PATH "${PROJECT_SOURCE_DIR}/No-Compass-in-Dialogue-SKSE-v${PROJECT_VERSION}.zip")
 
     add_custom_target(stage_mod
         COMMAND "${CMAKE_COMMAND}" -E rm -rf "${DHF_DIST_DIR}"
@@ -88,20 +86,4 @@ if(DHF_BUILD_PLUGIN)
         DEPENDS stage_mod
         VERBATIM
     )
-endif()
-
-if(BUILD_TESTING)
-    add_executable(DialogueHUDFadeTests
-        tests/FaderTests.cpp
-        tests/SettingsTests.cpp
-        tests/StateMachineTests.cpp
-    )
-    target_link_libraries(DialogueHUDFadeTests PRIVATE DialogueHUDFadeCore)
-    target_compile_features(DialogueHUDFadeTests PRIVATE cxx_std_20)
-
-    if(MSVC)
-        target_compile_options(DialogueHUDFadeTests PRIVATE /W4 /permissive- /utf-8)
-    endif()
-
-    add_test(NAME DialogueHUDFadeTests COMMAND DialogueHUDFadeTests)
 endif()

@@ -36,17 +36,6 @@ Edit `Data/SKSE/Plugins/DialogueHUDFade.ini` to change fade duration, visible/hi
 - CMake
 - vcpkg
 
-## Build
-
-```powershell
-cmake --preset release
-cmake --build --preset release
-ctest --preset release
-cmake --build --preset release --target package_mod
-```
-
-The mod-manager-ready package is staged in `dist` and copied to `Output` by `Build.ps1`.
-
 ## License
 
 Source available, all rights reserved. See `LICENSE`.
